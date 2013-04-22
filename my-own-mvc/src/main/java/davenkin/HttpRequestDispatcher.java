@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+
+import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,23 +22,31 @@ import java.io.IOException;
 public class HttpRequestDispatcher extends HttpServlet {
 
     public static final String CONTAINER = "MELT_CONTAINER";
+    private HashMap<String, Object> urlMappedController;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        NotJustMeltContainer container = (NotJustMeltContainer) this.getServletContext().getAttribute(CONTAINER);
-        SimpleController controller = container.resolve(SimpleController.class);
+        Object controller = getQualifiedController(req.getRequestURL().toString());
+       Method method = getQualifiedMethod(req.getRequestURL().toString(),controller);
+    }
 
-        try {
-            controller.doGet(req, resp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private Method getQualifiedMethod(String url, Object controller) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
+
+    private Object getQualifiedController(String url) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
     public void init() {
         NotJustMeltContainer container = new NotJustMeltContainer();
         Container meltContainer = new ContainerBuilder().register(SimpleController.class).build();
         container.setMeltContainer(meltContainer);
-        this.getServletContext().setAttribute(CONTAINER, container);
+        getServletContext().setAttribute(CONTAINER, container);
+        urlMappedController=findController(container);
+    }
+
+    private HashMap<String, Object> findController(NotJustMeltContainer container) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
 
