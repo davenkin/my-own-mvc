@@ -1,1 +1,1 @@
-include 'my-own-mvc', 'my-own-mvc-war','melt'
+include 'my-own-mvc', 'my-own-mvc-war', 'melt/melt-core'

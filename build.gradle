@@ -14,15 +14,21 @@ subprojects {
         mavenCentral()
     }
 
-    apply from: 'file:../emma.gradle'
+//    apply from: 'file:../emma.gradle'
 
     dependencies {
-        testCompile 'junit:junit:4.8.2'
-        testCompile 'easymock:easymock:2.0'
-        compile 'org.slf4j:slf4j-log4j12:1.7.2'
-        compile 'com.google.guava:guava:14.0'
-        
+        compile(
+                'com.google.guava:guava:14.0.1',
+                'org.slf4j:slf4j-log4j12:1.7.2'
+
+        )
+        testCompile(
+                'junit:junit:4.11',
+                'org.mockito:mockito-all:1.9.5'
+        )
+
     }
+
 }
 
 task wrapper(type: Wrapper) {
