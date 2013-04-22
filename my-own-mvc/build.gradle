@@ -1,3 +1,4 @@
 dependencies {
-    compile project(':my-own-ioc')
+    compile project(':melt')
+
 }
