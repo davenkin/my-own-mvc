@@ -6,11 +6,8 @@ import com.melt.core.ContainerBuilder;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +23,7 @@ public class HttpRequestDispatcher extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
         Object controller = getQualifiedController(req.getRequestURL().toString());
-       Method method = getQualifiedMethod(req.getRequestURL().toString(),controller);
+        Method method = getQualifiedMethod(req.getRequestURL().toString(), controller);
     }
 
     private Method getQualifiedMethod(String url, Object controller) {
@@ -42,7 +39,7 @@ public class HttpRequestDispatcher extends HttpServlet {
         Container meltContainer = new ContainerBuilder().register(SimpleController.class).build();
         container.setMeltContainer(meltContainer);
         getServletContext().setAttribute(CONTAINER, container);
-        urlMappedController=findController(container);
+        urlMappedController = findController(container);
     }
 
     private HashMap<String, Object> findController(NotJustMeltContainer container) {

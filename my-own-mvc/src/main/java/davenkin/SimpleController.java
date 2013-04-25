@@ -12,7 +12,6 @@ import java.io.PrintWriter;
  * Time: 8:16 PM
  * To change this template use File | Settings | File Templates.
  */
-@Controller
 public class SimpleController {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
