@@ -1,7 +1,7 @@
 package davenkin;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,16 +10,7 @@ import java.util.List;
  * Time: 7:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public final class Controller {
+public interface Controller {
 
-    private String url;
-    private List<RequestHandler> handlers = new ArrayList<RequestHandler>();
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void addHandler(RequestHandler handler) {
-        handlers.add(handler);
-    }
+    public void processRequest(HttpServletRequest request, HttpServletResponse response);
 }

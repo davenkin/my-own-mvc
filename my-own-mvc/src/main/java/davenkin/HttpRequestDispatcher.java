@@ -1,13 +1,12 @@
 package davenkin;
 
 import com.melt.core.Container;
-import com.melt.core.ContainerBuilder;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
-import java.util.HashMap;
+
+import static davenkin.ContextLoaderListener.ROOT_CONTAINER;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,33 +17,17 @@ import java.util.HashMap;
  */
 public class HttpRequestDispatcher extends HttpServlet {
 
-    public static final String CONTAINER = "MELT_CONTAINER";
-    private HashMap<String, Object> urlMappedController;
+    public static final String CONFIG_LOCATION = "configLocation";
+    private Container container;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        Object controller = getQualifiedController(req.getRequestURL().toString());
-        Method method = getQualifiedMethod(req.getRequestURL().toString(), controller);
-    }
-
-    private Method getQualifiedMethod(String url, Object controller) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
-    }
-
-    private Object getQualifiedController(String url) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        Controller controller = container.resolve(Controller.class);
+        controller.processRequest(req, resp);
     }
 
     public void init() {
-        NotJustMeltContainer container = new NotJustMeltContainer();
-        Container meltContainer = new ContainerBuilder().register(SimpleController.class).build();
-        container.setMeltContainer(meltContainer);
-        getServletContext().setAttribute(CONTAINER, container);
-        urlMappedController = findController(container);
+        String configLocation = this.getInitParameter(CONFIG_LOCATION);
+        Container parentContainer = (Container) getServletContext().getAttribute(ROOT_CONTAINER);
+        container = new ClasspathXmlContainerBuilder().withParent(parentContainer).build("/" + configLocation);
     }
-
-    private HashMap<String, Object> findController(NotJustMeltContainer container) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
-    }
-
-
 }
