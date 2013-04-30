@@ -7,7 +7,6 @@ target
 *.iws
 build
 out
-melt
 .gradle
 wrapper
 gradlew
