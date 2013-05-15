@@ -1,0 +1,3 @@
+<beans>
+    <bean>davenkin.customer.web.DefaultController</bean>
+</beans>

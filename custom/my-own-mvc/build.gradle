@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':melt/melt-core')
+    compile 'org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2'
+}
