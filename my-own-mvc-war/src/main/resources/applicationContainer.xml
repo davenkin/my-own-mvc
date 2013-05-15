@@ -1,4 +1,0 @@
-<beans>
-    <bean>davenkin.customer.dao.DefaultCustomerDao</bean>
-    <bean>davenkin.customer.service.DefaultCustomerService</bean>
-</beans>
