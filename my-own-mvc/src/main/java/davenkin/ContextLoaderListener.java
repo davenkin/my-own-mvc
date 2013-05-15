@@ -28,7 +28,7 @@ public class ContextLoaderListener implements ServletContextListener {
     }
 
     private Container createRootContainer(String configLocation) {
-        return new ClasspathXmlContainerBuilder().build("/"+configLocation);
+        return new ClasspathXmlContainerBuilder().build("/" + configLocation);
     }
 
     @Override

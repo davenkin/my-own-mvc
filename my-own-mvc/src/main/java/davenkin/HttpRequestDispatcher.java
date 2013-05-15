@@ -26,8 +26,5 @@ public class HttpRequestDispatcher extends HttpServlet {
     }
 
     public void init() {
-        String configLocation = this.getInitParameter(CONFIG_LOCATION);
-        Container parentContainer = (Container) getServletContext().getAttribute(ROOT_CONTAINER);
-        container = new ClasspathXmlContainerBuilder().withParent(parentContainer).build("/" + configLocation);
     }
 }
